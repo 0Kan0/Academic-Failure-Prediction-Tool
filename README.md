@@ -31,7 +31,7 @@ It is worth noting the use of these packages:
 # Usage
   5. Access src folder and run `python index.py`. This will open your web browser and redirect to the home screen. If it doesn't, navigate to http://localhost:8080.
   6. Follow the instrunctions provided in the home screen on the file before uploading it.
-  7. Upload the file.
+  7. Upload both train dataset and test dataset if you are in the "New model" tab, or upload just the test dataset and type the name of the saved model if you are in the "Load model" tab.
   8. Press "Start" buttton.
   9. Wait for the process to finish. You can check it in the terminal (note that depending of the size of the dataset and how good your computer is, the process will take more or less). The AutoML model of the dataset will be saved in the [saved_models](saved_models/). If the same dataset is uploaded, the model will be loaded instead of training a new one.
   10. If all went correctly, a "Go to dashboard" button should appear below the "Start" button. Click it and that will open a new tab with the dashboard hub (in case it didn't redirect, navigate to http://127.0.0.1:8050).
