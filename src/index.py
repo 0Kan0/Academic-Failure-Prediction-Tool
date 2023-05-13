@@ -545,10 +545,10 @@ def new_model_create_dashboard(train_contents, train_filename, test_contents, te
     # Create two explainer dashboards with different tabs
     db1 = ExplainerDashboard(test_explainer, header_hide_selector=True, hide_poweredby=True, title="Predictions Dashboard", 
                             tabs=[FeaturesImportanceTab, WhatIfTab, CounterfactualsTab(explainer=test_explainer, dataframe=df_test, trained_model=trained)],
-                            description="In this dashboard, you can access the following tabs: What If... and Counterfactuals. You will be able to make predictions of the students from the test dataset.")
+                            description="In this dashboard, you can access the following tabs: Features Impact, What If... and Counterfactuals. You will be able to make predictions of the students from the test dataset.")
     db2 = ExplainerDashboard(train_explainer, hide_poweredby=True, title="AutoML Model Performance Dashboard",
                             tabs=[AutoMLReportTab(explainer=train_explainer, ML_report=model_report), ClassificationStatsTab],
-                            description="In this dashboard, you can access the following tabs: AutoML Report, Feature Importances and Classificaction Stats. You will be able to see all models tried, which one was the best of all, and different metrics to check it's performance.")
+                            description="In this dashboard, you can access the following tabs: AutoML Report and Classificaction Stats. You will be able to see all models tried, which one was the best of all, and different metrics to check it's performance.")
     
     # Create an explainer hub with the two dashboards
     hub = ExplainerHub([db1, db2], title="Students Academic Failure Prediction Tool", n_dashboard_cols=2,
@@ -658,10 +658,10 @@ def load_model_create_dashboard(test_contents, test_filename, saved_explainer, n
     # Create two explainer dashboards with different tabs
     db1 = ExplainerDashboard(test_explainer, header_hide_selector=True, hide_poweredby=True, title="Predictions Dashboard", 
                             tabs=[FeaturesImportanceTab, WhatIfTab, CounterfactualsTab(explainer=test_explainer, dataframe=df_test, trained_model=load_model)],
-                            description="In this dashboard, you can access the following tabs: What If... and Counterfactuals. You will be able to make predictions of the students from the test dataset.")
+                            description="In this dashboard, you can access the following tabs: Features Impact, What If... and Counterfactuals. You will be able to make predictions of the students from the test dataset.")
     db2 = ExplainerDashboard(train_explainer, hide_poweredby=True, title="AutoML Model Performance Dashboard",
                             tabs=[AutoMLReportTab(explainer=train_explainer, ML_report=model_report), ClassificationStatsTab],
-                            description="In this dashboard, you can access the following tabs: AutoML Report, Feature Importances and Classificaction Stats. You will be able to see all models tried, which one was the best of all, and different metrics to check it's performance.")
+                            description="In this dashboard, you can access the following tabs: AutoML Report and Classificaction Stats. You will be able to see all models tried, which one was the best of all, and different metrics to check it's performance.")
     # Create an explainer hub with the two dashboards
     hub = ExplainerHub([db1, db2], title="Students Academic Failure Prediction Tool", n_dashboard_cols=2,
                         description="")
