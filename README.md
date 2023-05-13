@@ -40,9 +40,20 @@ It is worth noting the use of these packages:
 # Home page
 ![dashboard.gif](readme_images/home_page.gif)
 
+Once we enter the home page, we will see 2 tabs:
+  - New model: In this tab, users will be able to load 2 different datasets:
+    - Train dataset, this one will be used to train the model and will generate the performance graphs of the model used.
+    - Test datset, this will be the dataset you want to predict. Keep in mind that the test dataset and train dataset should have the same variables (columns).
+  - Load model: If you already created a model and want to use it to predict a different set of students, just upload the new test dataset and type the name of the previous train dataset uploaded.
+
 # Dashboard hub
 ![dashboard.gif](readme_images/dashboard_hub.gif)
 
 There will be 2 dashboards we can see in the hub:
-  - AutoML Student Dropout Explainer (Basic Interface): Focused for those that have no knowledge about machine learning. In this dashboard you can acces the "Predictions" tab and "What If" tab.
-  - AutoML Student Dropout Explainer (Advanced Interface): Focused for those that have knowledge about machine learning. In addition of what was already in the other dashboard, here you can check all models that were tested by AutoML and which one was the best, as well as different graphs and metrics of the performance of the best model used. Apart from this, you can access the "Counterfactuals" tab to generate counterfactuals explanations.
+  - Predictions Dashboard: In this dashboard, users will be able to see these 3 tabs:
+    - Feature Impact, represent the impact of each variable in the prediction.
+    - What If, you can see the predictions of every student of the test dataset. You can change its variable manually to see how it will affect the prediction.
+    - Counterfactual Scenarios, you can select a student and generate between 1-10 scenarios. Each one will change variables to reach the opposite outcome (if the student was Dropout, it will generate scenarios to reach No dropout)
+  - AutoML Model Performance Dashboard: In this dashboard, you can check all models that were tested by AutoML and which one was the best, as well as different graphs and metrics of the performance of the best model used. There are 2 tabs:
+    - AutoML Report, shows a report of all the models used and which one is the best. You can select the models and see different performance graphs and metrics.
+    - Classification Stats, here will show the graphs and metrics of the best model.
