@@ -373,7 +373,7 @@ def create_AutoML_model(contents, filename):
     )
 
     # Set path and create saved_models folder
-    saved_models_path = os.path.join(os.pardir,"saved_models",filename.split(".")[0],"AutoML")
+    saved_models_path = os.path.join("saved_models",filename.split(".")[0],"AutoML")
     os.makedirs(saved_models_path)
 
     # Define the AutoML model configuration
@@ -555,7 +555,7 @@ def new_model_create_dashboard(train_contents, train_filename, test_contents, te
                         description="")
 
     # Dump the explainer in the saved_explainer path
-    saved_explainer_path = os.path.join(os.pardir,"saved_models",train_filename.split(".")[0],"explainer.dill")
+    saved_explainer_path = os.path.join("saved_models",train_filename.split(".")[0],"explainer.dill")
     train_explainer.dump(saved_explainer_path)
 
     # Return no alert message and reveals the html.Div
@@ -631,8 +631,8 @@ def load_model_create_dashboard(test_contents, test_filename, saved_explainer, n
     
     # Set global variable hub and paths for the saved model and explainer
     global hub
-    saved_explainer_path = os.path.join(os.pardir,"saved_models",saved_explainer,"explainer.dill")
-    saved_models_path = os.path.join(os.pardir,"saved_models",saved_explainer,"AutoML")
+    saved_explainer_path = os.path.join("saved_models",saved_explainer,"explainer.dill")
+    saved_models_path = os.path.join("saved_models",saved_explainer,"AutoML")
 
     # Return alert if model does not exist
     if not os.path.exists(saved_models_path):
