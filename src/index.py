@@ -103,6 +103,7 @@ app.layout = dbc.Container([
                              - Make sure that the first column of the dataset is reserved for the index.
                              - At least one of the columns should contain continuous values (represented as floating-point numbers)
                              - The last column should have only two unique values: "Dropout" and "No dropout".
+                             - Make sure that both datasets have the same columns.
 
                              
                             Here you can upload 2 dataset:
@@ -276,7 +277,7 @@ app.layout = dbc.Container([
                     )),
 
                     html.Br(),
-                    html.H3("Name of the saved explainer (name of the folder inside the explainer folder)"),
+                    html.H3("Name of the saved model (name of the folder inside the saved_model folder)"),
                     # A component to indicate the name of the folder that includes the saved explainer and AutoML model.
                     dcc.Input(
                         id="explainer-name",
@@ -551,7 +552,7 @@ def new_model_create_dashboard(train_contents, train_filename, test_contents, te
                             description="In this dashboard, you can access the following tabs: AutoML Report and Classificaction Stats. You will be able to see all models tried, which one was the best of all, and different metrics to check it's performance.")
     
     # Create an explainer hub with the two dashboards
-    hub = ExplainerHub([db1, db2], title="Students Academic Failure Prediction Tool", n_dashboard_cols=2,
+    hub = ExplainerHub([db1, db2], title="Academic Failure Prediction Tool", n_dashboard_cols=2,
                         description="")
 
     # Dump the explainer in the saved_explainer path
@@ -663,7 +664,7 @@ def load_model_create_dashboard(test_contents, test_filename, saved_explainer, n
                             tabs=[AutoMLReportTab(explainer=train_explainer, ML_report=model_report), ClassificationStatsTab],
                             description="In this dashboard, you can access the following tabs: AutoML Report and Classificaction Stats. You will be able to see all models tried, which one was the best of all, and different metrics to check it's performance.")
     # Create an explainer hub with the two dashboards
-    hub = ExplainerHub([db1, db2], title="Students Academic Failure Prediction Tool", n_dashboard_cols=2,
+    hub = ExplainerHub([db1, db2], title="Academic Failure Prediction Tool", n_dashboard_cols=2,
                         description="")
     
     # Return no alert message and reveals the html.Div
