@@ -88,6 +88,8 @@ app.layout = dbc.Container([
         #BODY
         # A component that allows to switch between 2 tabs: New model or Load model
         dcc.Tabs([
+#-----------------------------------------------------------------------------------------------------
+        # New model interface
             dcc.Tab(
                 id="new-model",
                 label="New model",
@@ -457,6 +459,9 @@ def update_table(contents, filename):
             ]
         )
         return table
+    
+#-----------------------------------------------------------------------------------------------------
+# New model callback functions
 
 @app.callback(
         Output('new-model-output-data-train','children'),
@@ -583,6 +588,9 @@ def new_model_start_dashboard(n_clicks):
         return None
     
     return hub.run(use_waitress=True)
+
+#-----------------------------------------------------------------------------------------------------
+# Load model callback functions
 
 @app.callback(
         Output('load-model-output-data-test','children'),

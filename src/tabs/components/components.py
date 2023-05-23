@@ -390,18 +390,42 @@ class CounterfactualsComponent(ExplainerComponent):
             return counterfactuals_data, counterfactuals_columns, original_data, original_columns, False, False
         
 class TimerComponent(ExplainerComponent):
+    """
+    A component that works as a timer.
+    """
     def __init__(self, explainer, title="Timer", name=None, **kwargs):
+        """
+        Initializes the CounterfactualsComponent instance.
+
+        Args:
+            - explainer (ClassifierExplainer): Explainer instance containing dataset and trained model.
+            - title (str): Title of the component.
+            - name (str): Name of the component (for internal use).
+            - **kwargs: Optional keyword arguments.
+        """
+
+        # Call the parent constructor
         super().__init__(explainer, title, name)
 
 
     def layout(self):
+        """
+        Layout of the component.
+
+        Returns:
+            - The layout of the component wrapped in a Bootstrap card.
+        """
         return dbc.CardBody([
                 dbc.Row([
+                    # Save the time when the button was clicked
                     dcc.Store(id="time"),
+                    # Display the time
                     html.H2(id="display-time", children='Start timer'),
                     html.Br(),
+                    # Add start button
                     dbc.Button(f"Start", color="primary", id="start-button", style={'textAlign': 'center', 'width': '10%',}),
                     html.Br(),
+                    # Add stop button
                     dbc.Button(f"Stop", color="primary", id="stop-button", style={'textAlign': 'center', 'width': '10%'}),
                 ], class_name="mb-2"),
         ], class_name="h-100")
@@ -417,17 +441,40 @@ class TimerComponent(ExplainerComponent):
             prevent_initial_call=True
         )
         def update_timer(n_clicks_start, n_clicks_stop, start_time):
+            """
+            Start a timer when "Start" is clicked and stop it when "Stop" is clicked
+    
+            Args:
+                - n_clicks_start (int): Count of click events of the "Start" button.
+                - n_clicks_stop (int): Count of click events of the "Stop" button.
+                - start_time (float): Time when either of the buttons was pressed.
+            
+            Returns:
+                - tuple: A tuple containing the following items: 
+                    - counterfactuals_data containing the data of the counterfactuals generated.
+                    - counterfactuals_columns containing the columns of the counterfactuals generated 
+                    - original_data containing the data of the original dataframe. 
+                    - original_columns containing the columns of the original dataframe.
+                    - False that changes the visibility of both titles (Original and Counterfactuals) from hidden to visible.
+            """
+
+            # Save the time when "Start" button was pressed
             if n_clicks_start and not n_clicks_stop:
                 started_timer = time.time()
                 return "The timer has started.", started_timer, None
             
+            # Save the time when "Stop" button was pressed
             stopped_timer = time.time()
+
+            # Get the time by subtracting the time when "Stop" was pressed minus the time when "Start" was pressed.
             try:
                 elapsed_time = stopped_timer - start_time
             except:
                 return 'Start timer', None, None
             
+            # Format the time in hours, minutes and seconds
             minutes, seconds = divmod(elapsed_time, 60)
             hours, minutes = divmod(minutes, 60)
 
+            # Return time formated as 00h:00m:00s
             return f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}", None, None
