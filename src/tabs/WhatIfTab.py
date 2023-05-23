@@ -1,7 +1,7 @@
 import dash_bootstrap_components as dbc
 
 from explainerdashboard.custom import *
-from tabs.components.components import SelectStudentComponent
+from tabs.components.components import SelectStudentComponent, TimerComponent
     
 
 class WhatIfTab(ExplainerComponent):
@@ -10,7 +10,7 @@ class WhatIfTab(ExplainerComponent):
     """
 
     def __init__(self, explainer, title="What if...", name=None,
-                hide_selector=True, index_check=True,
+                hide_selector=True, index_check=True, hide_popout=True,
                 n_input_cols=4, **kwargs):
         """
         Initialize a WhatIfTab instance.
@@ -38,7 +38,8 @@ class WhatIfTab(ExplainerComponent):
                         hide_star_explanation=True,
                         hide_selector=hide_selector, **kwargs)
         self.contribution = ShapContributionsGraphComponent(explainer, name=self.name+"3",
-                        hide_selector=hide_selector, **kwargs)
+                        hide_selector=hide_selector, hide_popout=hide_popout, **kwargs)
+        self.timer = TimerComponent(explainer, name=self.name+"4", **kwargs)
         self.index_connector = IndexConnector(self.index, [self.input, self.contribution], 
                         explainer=explainer if index_check else None)
 
@@ -52,6 +53,11 @@ class WhatIfTab(ExplainerComponent):
 
         # Create a Bootstrap container
         return dbc.Container([
+            dbc.Row([
+                # Display TimerComponent
+                dbc.Col(
+                        self.timer.layout()),
+                ], class_name="mt-4 gx-4"),
             dbc.Row([
                 # Display SelectStudentComponent
                 dbc.Col(

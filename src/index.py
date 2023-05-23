@@ -103,7 +103,7 @@ app.layout = dbc.Container([
                              - Make sure that the first column of the dataset is reserved for the index.
                              - At least one of the columns should contain continuous values (represented as floating-point numbers)
                              - The last column should have only two unique values: "Dropout" and "No dropout".
-                             - Make sure that both datasets have the same columns.
+                             - Make sure that both datasets have the same variables. If you upload 2 datasets that have nothing in common, the model won't work.
 
                              
                             Here you can upload 2 dataset:
@@ -232,6 +232,7 @@ app.layout = dbc.Container([
                              - Make sure that the first column of the dataset is reserved for the index.
                              - At least one of the columns should contain continuous values (represented as floating-point numbers)
                              - The last column should have only two unique values: "Dropout" and "No dropout".
+                             - Make sure that the test dataset have the same variables as the previous train datset. If you upload 2 datasets that have nothing in common, the model won't work.
 
                              
                              Here you can upload 1 dataset:

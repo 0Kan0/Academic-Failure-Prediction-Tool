@@ -9,7 +9,7 @@ class ClassificationStatsTab(ExplainerComponent):
     """
 
     def __init__(self, explainer, title="Classification Stats", name=None,
-                    hide_selector=True, pos_label=None, **kwargs):
+                    hide_selector=True, pos_label=None, hide_popout=True, **kwargs):
         """
         Initialize a ClassificationStatsTab instance.
 
@@ -29,11 +29,11 @@ class ClassificationStatsTab(ExplainerComponent):
         self.summary = ClassifierModelSummaryComponent(explainer, name=self.name+"0", 
                 hide_selector=hide_selector, pos_label=pos_label, **kwargs)
         self.rocauc = RocAucComponent(explainer, name=self.name+"1",
-                hide_selector=hide_selector, pos_label=pos_label, **kwargs)
+                hide_selector=hide_selector, pos_label=pos_label, hide_popout=hide_popout, **kwargs)
         self.confusionmatrix = ConfusionMatrixComponent(explainer, name=self.name+"2",
-                hide_selector=hide_selector, pos_label=pos_label, **kwargs)
+                hide_selector=hide_selector, pos_label=pos_label, hide_popout=hide_popout, **kwargs)
         self.classification = ClassificationComponent(explainer, name=self.name+"3",
-                hide_selector=hide_selector, pos_label=pos_label, **kwargs)
+                hide_selector=hide_selector, pos_label=pos_label, hide_popout=hide_popout, **kwargs)
 
     def layout(self):
         """

@@ -8,7 +8,7 @@ class FeaturesImportanceTab(ExplainerComponent):
     """
 
     def __init__(self, explainer, title="Feature Impact", name=None,
-                hide_descriptions=True, hide_selector=True, **kwargs):
+                hide_descriptions=True, hide_selector=True, hide_popout=True, **kwargs):
         """
         Initialize a FeaturesImportanceTab instance.
 
@@ -26,7 +26,7 @@ class FeaturesImportanceTab(ExplainerComponent):
 
         # Setting attributes
         self.importances = ImportancesComponent(explainer, name=self.name+"0", title="Feature Impact", subtitle="Average impact on predicted dropout",
-                hide_selector=hide_selector, hide_descriptions=hide_descriptions)
+                hide_selector=hide_selector, hide_descriptions=hide_descriptions, hide_popout=hide_popout,)
         if not self.explainer.descriptions:
             self.hide_descriptions=True
 
